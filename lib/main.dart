@@ -140,7 +140,6 @@ class _calculatorScreenState extends State<calculatorScreen> {
       }
 
       _displayValue = result;
-
     });
   }
 
@@ -266,7 +265,7 @@ class _calculatorScreenState extends State<calculatorScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    CalcButton(text: "", onPressed: () {}),
+                    CalcButton(icon: Icons.settings, onPressed: () {}),
 
                     CalcButton(text: "0", onPressed: () => _handleNumber("0")),
 
