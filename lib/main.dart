@@ -113,6 +113,37 @@ class _calculatorScreenState extends State<calculatorScreen> {
     }
   }
 
+  void _handleToggleSign() {
+    setState(() {
+      if (_displayValue != "0") {
+        if (_displayValue.startsWith("-")) {
+          _displayValue = _displayValue.substring(1);
+        } else {
+          _displayValue = "-$_displayValue";
+        }
+      }
+    });
+  }
+
+  void _handlePercentage() {
+    setState(() {
+      String value = _displayValue.replaceAll(",", ".");
+      double num = double.parse(value);
+      num = num / 100;
+
+      String result = num.toString();
+      result = result.replaceAll(".", ",");
+
+      // trailing zeros removal
+      if (result.endsWith(",0")) {
+        result = result.substring(0, result.length - 2);
+      }
+
+      _displayValue = result;
+
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -152,13 +183,13 @@ class _calculatorScreenState extends State<calculatorScreen> {
                     CalcButton(
                       text: "+/-",
                       backgroundColor: Color.fromARGB(255, 90, 88, 88),
-                      onPressed: () {},
+                      onPressed: () => _handleToggleSign(),
                     ),
 
                     CalcButton(
                       text: "%",
                       backgroundColor: Color.fromARGB(255, 90, 88, 88),
-                      onPressed: () {},
+                      onPressed: () => _handlePercentage(),
                     ),
 
                     CalcButton(
